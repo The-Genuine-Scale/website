@@ -1,0 +1,227 @@
+.main_container_salesbanner2 {
+  padding: 45px 20px 20px 20px;
+  width: 100%;
+}
+
+.main_box_salesbanner2 {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  grid-gap: 15px;
+  background-image: url("../../../assets/salesbanner2.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  padding: 0 70px;
+  height: 180px;
+}
+
+.left_section_salesbanner2 h4 {
+  font-family: "Inter", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 58px;
+  line-height: 72px;
+  color: var(--black-color);
+  text-align: center;
+  margin-top: -10px;
+}
+
+.left_section_salesbanner2 p {
+  font-family: "Inter", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
+  color: var(--black-color);
+  text-align: center;
+}
+
+.middle_section_salesbanner2 {
+    width: 4px;
+
+    background-color:rgba(0, 0, 0, 0.5);
+height: 100px;
+}
+
+.right_section_salesbanner2 {
+    display: flex;
+    flex-direction: column;
+    grid-gap: 10px;
+}
+
+.right_upper_section_salesbanner2 h4 {
+    font-family: 'Inter';
+font-style: normal;
+font-weight: 700;
+font-size: 25px;
+line-height: 30px;
+}
+
+.right_upper_section_salesbanner2 span {
+    color: var(--header-bg);
+}
+
+.right_lower_section_salesbanner2 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.right_lower_section_salesbanner2 h4 {
+    font-family: 'Inter';
+font-style: normal;
+font-weight: 700;
+font-size: 25px;
+line-height: 30px;
+}
+
+.right_lower_section_salesbanner2 span {
+    color: var(--header-bg);
+}
+
+.primary_btn_salesbanner2 {
+    padding: 6px 13px;
+    outline: none;
+    border: none;
+    background-color: var(--header-bg);
+    border-radius: 10px;
+    font-family: 'Inter';
+font-style: normal;
+font-weight: 700;
+font-size: 19px;
+line-height: 24px;
+color: var(--white-color);
+}
+
+
+
+
+
+
+
+
+
+@media screen and (max-width: 1200px) {
+  .left_section_salesbanner2 h4 {
+    font-size: 50px;
+    line-height: 64px;
+  }
+
+  .left_section_salesbanner2 p {
+    width: 180px;
+    font-size: 18px;
+  }
+
+  .main_box_salesbanner2 {
+    padding: 0 40px;
+  }
+
+  .right_upper_section_salesbanner2 h4, .right_lower_section_salesbanner2 h4 {
+    font-size: 23px;
+    line-height: 28px;
+  }
+
+  .primary_btn_salesbanner2 {
+    font-size: 18px;
+    line-height: 20px;
+  }
+}
+
+@media screen and (max-width: 970px) {
+  .left_section_salesbanner2 h4 {
+    font-size: 46px;
+    line-height: 60px;
+  }
+
+  .left_section_salesbanner2 p {
+    width: 180px;
+    font-size: 16px;
+  }
+
+  .right_upper_section_salesbanner2 h4, .right_lower_section_salesbanner2 h4 {
+    font-size: 20px;
+    line-height: 25px;
+}
+
+.primary_btn_salesbanner2 {
+    font-size: 16px;
+    line-height: 18px;
+}
+
+.main_box_salesbanner2 {
+    padding: 0 30px;
+}
+}
+
+@media screen and (max-width: 670px) {
+  .left_section_salesbanner2 h4 {
+    font-size: 46px;
+    line-height: 55px;
+  }
+
+  .left_section_salesbanner2 p {
+    width: auto;
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  .main_container_salesbanner2 {
+    padding: 40px 0px 20px 0px;
+}
+
+  .main_box_salesbanner2 {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    grid-gap: 20px;
+    height: 240px;
+    padding: 0 20px;
+  }
+
+  .middle_section_salesbanner2 {
+    display: none;
+  }
+
+  .right_section_salesbanner2, .right_lower_section_salesbanner2 {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 490px) {
+  .left_section_salesbanner2 h4 {
+    font-size: 40px;
+    line-height: 50px;
+    text-align: left;
+  }
+
+  .right_upper_section_salesbanner2 h4 {
+    font-size: 18px;
+  }
+
+  .right_lower_section_salesbanner2 h4 {
+    font-size: 18px;
+    width: min-content;
+  }
+
+  .right_section_salesbanner2 {
+    grid-gap: 5px;
+  }
+
+  .primary_btn_salesbanner2 {
+    font-weight: 600;
+  }
+
+  .main_box_salesbanner2 {
+    height: 250px;
+  }
+
+  .primary_btn_salesbanner2 {
+    word-wrap: break-word;
+  }
+
+  .right_lower_section_salesbanner2 {
+    grid-gap: 10px;
+  }
+}

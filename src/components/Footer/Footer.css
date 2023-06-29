@@ -1,0 +1,128 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&display=swap");
+
+.main_container_footer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 90px 120px;
+  background-color: var(--header-bg);
+}
+
+.left_section_footer {
+  display: flex;
+  flex-direction: column;
+}
+
+.left_section_footer h2 {
+  font-family: "Inter", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 62.5px;
+  line-height: 76px;
+  color: var(--white-color);
+  text-align: center;
+}
+
+.left_section_footer p {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  text-align: center;
+  color: var(--white-color);
+}
+
+.right_section_footer {
+  display: flex;
+  flex-direction: column;
+  grid-gap: 25px;
+  max-width: 340px;
+}
+
+.right_upper_section_footer {
+  display: flex;
+  flex-direction: column;
+  grid-gap: 15px;
+}
+
+.right_section_footer p {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--white-color);
+}
+
+.right_lower_section_footer {
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+  grid-gap: 8px;
+}
+
+.right_lower_section_footer a {
+  text-decoration: none;
+  color: var(--white-color);
+}
+
+.social_icon_footer {
+  font-size: 24px;
+}
+
+.social_icon2_footer {
+    font-size: 27px;
+}
+
+.right_lower_section_footer a:hover {
+    color: var(--background-secondary);
+}
+
+@media screen and (max-width: 1000px) {
+    .main_container_footer {
+        padding: 60px;
+    }
+}
+
+@media screen and (max-width: 740px) {
+    .main_container_footer {
+        flex-direction: column;
+        grid-gap: 35px;
+        padding: 40px 30px;
+    }
+
+    .left_section_footer h2 {
+        text-align: left;
+        font-size: 55px;
+        line-height: 67px;
+    }
+
+    .left_section_footer p {
+        text-align: left;
+        font-size: 19px;
+    line-height: 21px;
+    }
+}
+
+@media screen and (max-width: 490px) {
+    .main_container_footer {
+        grid-gap: 35px;
+        padding: 30px 20px;
+    }
+
+    .left_section_footer h2 {
+        font-size: 50px;
+        line-height: 62px;
+    }
+
+    .left_section_footer p {
+        font-size: 18px;
+    line-height: 20px;
+    }
+
+    .right_section_footer p {
+        font-size: 14px;
+        line-height: 20px;
+    }
+}

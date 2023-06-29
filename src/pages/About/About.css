@@ -1,0 +1,147 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+.about_container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #f2f2f2;
+  padding: 0 2em 2em 2em;
+  grid-gap: 110px;
+}
+
+.about_navbar {
+  width: 100%;
+  padding: 1em 0 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  grid-gap: 8px;
+}
+
+.about_navbar a {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  text-decoration: none;
+  font-size: 12px;
+  line-height: 18px;
+  color: var(--black-color);
+  text-overflow: ellipsis;
+}
+
+.greater_icon_aboutbanner1 {
+  font-size: 10px;
+  color: var(--black-color);
+}
+
+.story {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  grid-gap: 15px;
+  padding: 0 90px;
+}
+
+.story p {
+  font-family: "Poppins", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 22px;
+  color: var(--black-color);
+}
+
+.team {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-column-gap: 15px;
+  grid-row-gap: 100px;
+  padding: 20px 140px;
+}
+
+@media screen and (max-width: 490px) {
+  .about_container {
+    grid-gap: 45px;
+  }
+
+  .about_navbar {
+    padding: 12px 20px;
+  }
+
+  .story {
+    padding: 0 20px;
+  }
+
+  .story p {
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .team {
+    padding: 20px 20px;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(9, 1fr);
+    grid-row-gap: 45px;
+  }
+}
+@media screen and (max-width: 650px) {
+  .about_container {
+    grid-gap: 60px;
+    padding: 0 20px 70px 20px;
+    grid-gap: 45px;
+    padding: 0 25px 90px 25px;
+    grid-gap: 50px;
+  }
+
+  .about_navbar {
+    padding: 15px 30px;
+  }
+
+  .story {
+    padding: 0 40px;
+  }
+
+  .team {
+    padding: 10px 40px;
+    grid-row-gap: 60px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .about_container {
+    padding: 0 30px 110px 30px;
+    grid-gap: 70px;
+    grid-gap: 70px;
+  }
+
+  .about_navbar {
+    padding: 15px 40px;
+  }
+
+  .story {
+    padding: 0 60px;
+  }
+
+  .team {
+    padding: 0 70px;
+    grid-row-gap: 80px;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .about_container {
+    padding: 0 60px 130px 60px;
+    grid-gap: 80px;
+  }
+
+  .about_footer {
+    padding: 0;
+  }
+
+  .team {
+    padding: 0 100px;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+  }
+}
