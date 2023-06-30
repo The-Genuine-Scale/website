@@ -13,7 +13,9 @@ const Cart = () => {
   useEffect(() => {
     const fetchCartItems = async () => {
       try {
+        console.log(userId)
         const items = await getCartItems(userId);
+        console.log(items)
         const cartItemsWithDetails = await Promise.all(
           items.map(async (item) => {
             const product = await getProductById(item.productId);

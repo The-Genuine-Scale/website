@@ -2,7 +2,7 @@ import React from "react";
 import "./ProductsList.css";
 import { Link } from "react-router-dom";
 
-const ProductCard4 = ({ products }) => {
+const ProductList = ({ products }) => {
   return (
     <div className="product_list_main_container_productcard1">
       <div className="product_list_container_productcard1">
@@ -23,4 +23,4 @@ const ProductCard4 = ({ products }) => {
   );
 };
 
-export default ProductCard4;
+export default ProductList;

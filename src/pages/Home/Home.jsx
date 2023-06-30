@@ -112,7 +112,7 @@ const Home = () => {
                   image: Image9,
                   description:
                     "Gift your little ones loads of smiles with Special Birthday Cakes for Kids",
-                  link: "/product/customise",
+                  link: "/products/customise",
                 }}
             />
             <ProductCard
@@ -122,7 +122,7 @@ const Home = () => {
                   image: Image10,
                   description:
                     "Add a delish twist to your surprise with artistic Choco Bouquets",
-                  link: "/product/customise",
+                  link: "/products/customise",
                 }}
             />
             <ProductCard
@@ -132,7 +132,7 @@ const Home = () => {
                   image: Image11,
                   description:
                     "Magnify their joy & excitement with our attractive Gift Hampers",
-                  link: "/product/customise",
+                  link: "/products/customise",
                 }}
             />
             <ProductCard
@@ -151,7 +151,7 @@ const Home = () => {
                   image: Image13,
                   description:
                     "Find meaningful & thoughtful gifts from our Curated Collection",
-                  link: "/product/customise",
+                  link: "/products/customise",
                 }}
             />
           </div>

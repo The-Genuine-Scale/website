@@ -1,5 +1,15 @@
-import { collection, getDocs, where, query } from "firebase/firestore";
+import { collection, getDocs, where, query, addDoc } from "firebase/firestore";
 import { db } from "./firebase";
+
+export async function saveProduct(productData) {
+  try {
+    const prodCol = collection(db, "Products");
+    await addDoc(prodCol, productData);
+    console.log("Product saved successfully!");
+  } catch (error) {
+    console.log("Error saving product:", error);
+  }
+}
 
 export async function getProductById(docId) {
   console.log("10");
@@ -20,14 +30,6 @@ export async function getProductById(docId) {
 export async function getProducts() {
   console.log("11");
   const prodCol = collection(db, "Products");
-  const prodSnapshot = await getDocs(prodCol);
-  const prodList = prodSnapshot.docs.map((doc) => doc.data());
-  return prodList;
-}
-
-export async function getOrders() {
-  console.log("12");
-  const prodCol = collection(db, "Orders");
   const prodSnapshot = await getDocs(prodCol);
   const prodList = prodSnapshot.docs.map((doc) => doc.data());
   return prodList;

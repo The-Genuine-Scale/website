@@ -20,16 +20,14 @@ const Checkout = () => {
     const fetchUserDetails = async () => {
       try {
         const userDetails = await getUserDetails(userId);
-        setPersonalDetails(userDetails);
+        setPersonalDetails({name: userDetails.name, mobileNumber: userDetails.mobileNumber, email: userDetails.email});
+        console.log(personalDetails)
       } catch (error) {
         console.log(error);
       }
     };
 
     fetchUserDetails();
-  }, [userId]);
-
-  useEffect(() => {
     const fetchCartItems = async () => {
       try {
         const items = await getCartItems(userId);
@@ -40,6 +38,7 @@ const Checkout = () => {
           })
         );
         setCartItems(cartItemsWithDetails);
+        console.log(cartItemsWithDetails)
       } catch (error) {
         console.log(error);
       }
@@ -54,10 +53,8 @@ const Checkout = () => {
       }
     };
 
-    if (!userId) {
       fetchCartItems();
       fetchAddresses();
-    }
   }, [userId]);
 
   const handleQuantityIncrease = (index) => {
@@ -156,7 +153,7 @@ const Checkout = () => {
             onChange={(e) => setSelectedAddress(e.target.value)}
           >
             <option value="">Select Address</option>
-            {addressOptions.map((address) => (
+            {addressOptions?.map((address) => (
               <option key={address} value={address}>
                 {address}
               </option>

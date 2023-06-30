@@ -13,29 +13,33 @@ export const updateOrderHistory = async (uid, item) => {
     const usersCollection = collection(db, "Users");
     const userQuery = query(usersCollection, where("userId", "==", uid));
     const userSnapshot = await getDocs(userQuery);
-
+    console.log(userSnapshot)
     if (!userSnapshot.empty) {
       const userDoc = userSnapshot.docs[0];
       const userRef = doc(db, "Users", userDoc.id);
       const userData = userDoc.data();
       let updatedCart = [...userData.cart];
+      console.log(updatedCart)
       updatedCart = updatedCart
         .map((cartItem) => {
+          console.log(cartItem, item.product)
           if (cartItem.productId === item.product.docId) {
             if (cartItem.quantity > item.quantity) {
               return {
-                ...cartItem,
+                productId: cartItem.productId,
                 quantity: cartItem.quantity - item.quantity,
               };
             } else {
               return null;
             }
           } else {
-            return item;
+            return cartItem;
           }
         })
         .filter(Boolean);
+        console.log(updatedCart)
       let updatedOrderHistory = [...userData.orderHistory];
+      console.log(updatedOrderHistory)
       updatedOrderHistory.push(item);
 
       await updateDoc(userRef, {

@@ -13,6 +13,7 @@ import Checkout from "./pages/Checkout/Checkout.jsx";
 import Account from "./pages/Account/Account.jsx";
 import { Routes, Route } from "react-router-dom";
 import OrderHistory from "./pages/orderHistory/OrderHistory.jsx";
+import CreateProduct from "./pages/CreateProduct/CreateProduct.jsx";
 
 const App = () => {
   const isLoggedIn = localStorage.getItem("uid");
@@ -35,6 +36,7 @@ const App = () => {
             <Route path="/cart" element={<Cart />} />
             <Route path="/checkout" element={<Checkout />} />
             <Route path="/orders" element={<OrderHistory />} />
+            <Route path="/create" element={<CreateProduct />} />
           </>
         ) : (
           <>
@@ -42,6 +44,7 @@ const App = () => {
             <Route path="/cart" element={<Login />} />
             <Route path="/checkout" element={<Login />} />
             <Route path="/orders" element={<Login />} />
+            <Route path="/create" element={<Login />} />
           </>
         )}
       </Routes>

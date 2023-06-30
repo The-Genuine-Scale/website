@@ -44,8 +44,8 @@ const OrderHistory = () => {
             <div className="personal-details">
               <h3>Customer Details</h3>
               <ul>
-                <li><span>Name:</span> {order.personalDetails.fullName}</li>
-                <li><span>Mobile Number:</span> {order.personalDetails.number}</li>
+                <li><span>Name:</span> {order.personalDetails.name}</li>
+                <li><span>Mobile Number:</span> {order.personalDetails.mobileNumber}</li>
                 <li><span>Email:</span> {order.personalDetails.email}</li>
               </ul>
             </div>

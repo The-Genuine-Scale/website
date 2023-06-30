@@ -23,6 +23,7 @@ export async function signUp(email, password) {
       wishlist: [],
       orderHistory: [],
       following: 0,
+      address: [],
     };
     await addDoc(usersCollection, userData);
     return user;
