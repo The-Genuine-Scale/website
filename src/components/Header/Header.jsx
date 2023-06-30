@@ -51,6 +51,7 @@ const Header = () => {
     auth
       .signOut()
       .then(() => {
+        localStorage.setItem("uid", null);
         console.log("User signed out successfully");
         navigate("/");
       })
@@ -129,25 +130,47 @@ const Header = () => {
           </div>
         </div>
 
-        {/* MOBILE HEADER  */}
+        {/* MOBILE HEADER */}
         <div className="mobile_header">
           <div className="mobile_box_header">
             <div className="mob_top_section_header">
               <div className="mob_top_left_section_header">
                 <FaBars className="nav_icon_header" onClick={handleClick} />
-                <h2>SCALE</h2>
+                <Link to="/" className="mob_logo_header">
+                  <h2>SCALE</h2>
+                </Link>
               </div>
 
-              <div className="mob_top_right_section_header">
-                <Link to="/cart" className="mob_cart_container_header">
-                  <AiOutlineShoppingCart className="mob_cart_icon_header" />
-                  <p>Cart</p>
-                </Link>
-                <div className="mob_account_container_header">
-                  <FaRegUserCircle className="mob_account_icon_header" />
-                  <p>Account</p>
+              {isLoggedIn ? (
+                <div className="mob_top_right_section_header">
+
+              <Link to="/cart" className="mob_cart_container_header">
+                <AiOutlineShoppingCart className="mob_cart_icon_header" />
+                <p>Cart</p>
+              </Link>
+                  <div
+                    className="mob_account_container_header"
+                    onClick={checkLoginStatus}
+                  >
+                    <FaRegUserCircle className="mob_account_icon_header" />
+                    <p>Account</p>
+                  </div>
+                  <div
+                    className="mob_signout_button_header"
+                    onClick={handleSignOut}
+                  >
+                    <FaSignOutAlt className="mob_signout_icon_header" />
+                    <p>Sign Out</p>
+                  </div>
                 </div>
-              </div>
+              ) : (
+                <div className="mob_top_right_section_header">
+                  <Link to="/login" className="mob_signup_button_header">
+                    <FaSignInAlt className="mob_signup_icon_header" />
+                    <p>Login</p>
+                  </Link>
+                </div>
+              )}
             </div>
 
             <div className="mob_bottom_section_header">

@@ -1,5 +1,6 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
+private.txt
+scale-e3db4-firebase-adminsdk-wixrk-391c95c231.json
 # dependencies
 /node_modules
 /.pnp
@@ -24,3 +25,4 @@ yarn-error.log*
 
 # Local Netlify folder
 .netlify
+

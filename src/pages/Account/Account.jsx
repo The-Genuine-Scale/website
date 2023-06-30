@@ -4,10 +4,10 @@ import { useNavigate } from "react-router-dom";
 import "./Account.css";
 
 const Account = () => {
-  const navigate = useNavigate();
   const [userDetails, setUserDetails] = useState({});
   const [isEditMode, setIsEditMode] = useState(false);
   const [newAddress, setNewAddress] = useState("");
+  const navigate = useNavigate();
   const userId = localStorage.getItem("uid");
 
   useEffect(() => {

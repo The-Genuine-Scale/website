@@ -58,6 +58,9 @@ const SingleProduct = () => {
     // eslint-disable-next-line
   }, [userId]);
   const handleRemoveFromCart = async () => {
+    if(userId){
+      navigate('/login')
+    }
     try {
       await removeFromCart(userId, id);
       setQuantity(quantity - 1);
@@ -66,6 +69,11 @@ const SingleProduct = () => {
     }
   };
   const handleAddToCart = async () => {
+    console.log(userId)
+    if(userId){
+      console.log('hehe')
+      navigate('/login')
+    }
     try {
       const result = await addToCart(userId, id);
       console.log(result);
@@ -75,6 +83,9 @@ const SingleProduct = () => {
     }
   };
   const handleBuyNow = async () => {
+    if(userId){
+      navigate('/login')
+    }
     if (quantity < 1) {
       setQuantity(1);
       try {
