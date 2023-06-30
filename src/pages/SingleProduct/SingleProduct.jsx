@@ -58,7 +58,7 @@ const SingleProduct = () => {
     // eslint-disable-next-line
   }, [userId]);
   const handleRemoveFromCart = async () => {
-    if(userId){
+    if(!userId){
       navigate('/login')
     }
     try {
@@ -70,7 +70,7 @@ const SingleProduct = () => {
   };
   const handleAddToCart = async () => {
     console.log(userId)
-    if(userId){
+    if(!userId){
       console.log('hehe')
       navigate('/login')
     }
@@ -83,7 +83,7 @@ const SingleProduct = () => {
     }
   };
   const handleBuyNow = async () => {
-    if(userId){
+    if(!userId){
       navigate('/login')
     }
     if (quantity < 1) {

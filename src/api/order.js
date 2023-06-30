@@ -50,3 +50,24 @@ export const updateOrderHistory = async (uid, item) => {
     throw error;
   }
 };
+
+export const getOrders = async (uid) => {
+  try {
+    const usersCollection = collection(db, "Users");
+    const userQuery = query(usersCollection, where("userId", "==", uid));
+    const userSnapshot = await getDocs(userQuery);
+
+    if (!userSnapshot.empty) {
+      const userDoc = userSnapshot.docs[0];
+      const userData = userDoc.data();
+      console.log(userData.orderHistory)
+      return userData.orderHistory;
+    } else {
+      console.log("User does not exist");
+      return [];
+    }
+  } catch (error) {
+    console.error("Error retrieving order history:", error);
+    throw error;
+  }
+};

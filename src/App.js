@@ -12,6 +12,7 @@ import Footer from "./components/Footer/Footer.jsx";
 import Checkout from "./pages/Checkout/Checkout.jsx";
 import Account from "./pages/Account/Account.jsx";
 import { Routes, Route } from "react-router-dom";
+import OrderHistory from "./pages/orderHistory/OrderHistory.jsx";
 
 const App = () => {
   const isLoggedIn = localStorage.getItem("uid");
@@ -28,17 +29,19 @@ const App = () => {
         <Route path="/about" element={<About />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
-        {isLoggedIn===null ? (
+        {isLoggedIn!==null ? (
           <>
             <Route path="/account" element={<Account />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/checkout" element={<Checkout />} />
+            <Route path="/orders" element={<OrderHistory />} />
           </>
         ) : (
           <>
             <Route path="/account" element={<Login />} />
             <Route path="/cart" element={<Login />} />
             <Route path="/checkout" element={<Login />} />
+            <Route path="/orders" element={<Login />} />
           </>
         )}
       </Routes>

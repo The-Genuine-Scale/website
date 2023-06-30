@@ -1,0 +1,56 @@
+.order-history {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .order {
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    padding: 20px;
+  }
+  
+  .product-info {
+    display: flex;
+    align-items: center;
+  }
+  
+  .product-info img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin-right: 20px;
+  }
+  
+  .product-details h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .product-details p {
+    margin: 5px 0;
+  }
+  
+  .personal-details {
+    margin-top: 20px;
+  }
+  
+  .personal-details h3 {
+    margin: 0;
+    font-size: 16px;
+  }
+  
+  .personal-details ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .personal-details ul li {
+    margin-bottom: 5px;
+  }
+  
+  .personal-details ul li span {
+    font-weight: bold;
+  }
+  

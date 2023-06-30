@@ -48,12 +48,13 @@ const Checkout = () => {
       try {
         const addresses = await getAddressesByUser(userId);
         setAddressOptions(addresses);
+        console.log(addressOptions)
       } catch (error) {
         console.log(error);
       }
     };
 
-    if (userId) {
+    if (!userId) {
       fetchCartItems();
       fetchAddresses();
     }
