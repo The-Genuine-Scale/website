@@ -1,6 +1,5 @@
 import { query, collection, where, getDocs, updateDoc, doc } from 'firebase/firestore';
 import { db } from './firebase';
-import { Navigate } from "react-router-dom";
 
 export const getCartItems = async (uid) => {
   try {

@@ -14,7 +14,6 @@ const Checkout = () => {
   const [selectedAddress, setSelectedAddress] = useState("");
   const [newAddress, setNewAddress] = useState("");
   const [paymentMethod, setPaymentMethod] = useState("");
-  const [isEditMode, setIsEditMode] = useState(false);
   const userId = localStorage.getItem("uid");
 
   useEffect(() => {
@@ -28,7 +27,7 @@ const Checkout = () => {
     };
 
     fetchUserDetails();
-  }, []);
+  }, [userId]);
 
   useEffect(() => {
     const fetchCartItems = async () => {

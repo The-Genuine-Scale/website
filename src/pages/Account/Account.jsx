@@ -21,7 +21,7 @@ const Account = () => {
     };
 
     fetchUserDetails();
-  }, []);
+  }, [userId]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -49,9 +49,9 @@ const Account = () => {
     navigate('/cart')
   };
 
-  const handleViewWishlist = () => {
-    navigate('/wishlist')
-  };
+//   const handleViewWishlist = () => {
+//     navigate('/wishlist')
+//   };
 
   const handleAddAddress = () => {
     setUserDetails((prevUserDetails) => ({
