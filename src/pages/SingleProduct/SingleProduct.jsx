@@ -8,17 +8,17 @@ import { useParams } from "react-router-dom";
 import ProductsList from "../../components/ProductsList/ProductsList";
 import { getProducts, getProductById } from "../../api/product";
 import { addToCart, removeFromCart, getItemCount } from "../../api/cart";
-import { auth } from "../../api/firebase";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import PageNavigator from "../../components/PageNavigator/PageNavigator";
 import ProductReview from "../../components/ProductReview/ProductReview";
 
 const SingleProduct = () => {
+  const navigate = useNavigate();
   const { id } = useParams();
   const [products, setProducts] = useState([]);
   const [product, setProduct] = useState();
   const [quantity, setQuantity] = useState(0);
-  const userId = auth.currentUser?.uid;
+  const userId = localStorage.getItem("uid");
   useEffect(() => {
     async function fetchProducts() {
       try {
@@ -55,6 +55,7 @@ const SingleProduct = () => {
     }
 
     fetchItemCount();
+    // eslint-disable-next-line
   }, [userId]);
   const handleRemoveFromCart = async () => {
     try {
@@ -72,6 +73,17 @@ const SingleProduct = () => {
     } catch (error) {
       console.log(error);
     }
+  };
+  const handleBuyNow = async () => {
+    if (quantity < 1) {
+      setQuantity(1);
+      try {
+        await addToCart(userId, id);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    navigate("/checkout");
   };
   return (
     <div className="main_container_productbanner1">
@@ -147,7 +159,10 @@ const SingleProduct = () => {
               <div className="product_third_bottom_section_productbanner1">
                 {quantity > 0 ? (
                   <div className="product_quantity_section_productbanner1">
-                    <button className="primary_btn_productbanner1" onClick={handleAddToCart}>
+                    <button
+                      className="primary_btn_productbanner1"
+                      onClick={handleAddToCart}
+                    >
                       +
                     </button>
                     <p className="quantity_text">{quantity}</p>
@@ -166,12 +181,12 @@ const SingleProduct = () => {
                     Add to Cart
                   </button>
                 )}
-                <Link
-                  to="/paymentportal1"
+                <button
+                  onClick={handleBuyNow}
                   className="secondary_btn_productbanner1"
                 >
                   BUY NOW
-                </Link>
+                </button>
               </div>
             </div>
           </div>

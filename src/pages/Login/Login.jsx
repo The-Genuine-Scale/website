@@ -24,6 +24,7 @@ const Login = () => {
     try {
       const auth = getAuth();
       await signInWithEmailAndPassword(auth, email, password);
+      localStorage.setItem("uid", auth.currentUser.uid)
       setEmail('');
       setPassword('');
       setError('');

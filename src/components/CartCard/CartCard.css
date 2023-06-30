@@ -1,0 +1,67 @@
+.checkout-items h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.checkout-item a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+.checkout-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.checkout-item a img {
+  width: 80px;
+  height: 80px;
+  margin-right: 10px;
+}
+
+.checkout-item a div {
+  flex: 1;
+}
+
+.checkout-item div {
+  flex: 1;
+}
+
+.checkout-item a h3 {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.checkout-item a p {
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.quantity-controls button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  font-size: 16px;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.quantity-controls button:hover {
+  background-color: #45a049;
+}

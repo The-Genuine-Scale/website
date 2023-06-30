@@ -1,0 +1,68 @@
+.account-page {
+    margin: 20px;
+  }
+  
+  .account-page h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .account-page .label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  .account-page input[type="text"],
+  .account-page input[type="email"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+  }
+  
+  .account-page pre {
+    margin: 0;
+    padding: 8px;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+  }
+  
+  .account-page button {
+    padding: 10px 20px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 10px;
+  }
+  
+  .account-page button:hover {
+    background-color: #45a049;
+  }
+  
+  .account-page button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  .all_buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+  
+  .edit {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .account-page .address-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+  }
+  
+  .account-page .address-item button {
+    margin-left: 10px;
+  }
+  

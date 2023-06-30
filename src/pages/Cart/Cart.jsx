@@ -1,95 +1,92 @@
-import "./Cart.css";
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { db, auth } from "../../api/firebase";
+import { Link } from "react-router-dom"
+import { getCartItems, removeFromCart, addToCart } from "../../api/cart";
+import { getProductById } from "../../api/product";
+import "./Cart.css";
+import CartCard from "../../components/CartCard/CartCard";
 
-const CartPage = () => {
-  const navigate = useNavigate();
+const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
+  const [quantity, setQuantity] = useState(0);
+  const userId = localStorage.getItem("uid");
 
   useEffect(() => {
     const fetchCartItems = async () => {
       try {
-        const user = auth.currentUser;
-        if (user) {
-          const userRef = db.collection("users").doc(user.uid);
-          const cartSnapshot = await userRef.collection("cart").get();
-          const cartData = cartSnapshot.docs.map((doc) => ({
-            id: doc.id,
-            ...doc.data(),
-          }));
-          console.log(cartData)
-          setCartItems(cartData);
-        }
+        const items = await getCartItems(userId);
+        const cartItemsWithDetails = await Promise.all(
+          items.map(async (item) => {
+            const product = await getProductById(item.productId);
+            return { ...product, quantity: item.quantity };
+          })
+        );
+        setCartItems(cartItemsWithDetails);
       } catch (error) {
-        console.log("Error fetching cart items:", error);
+        console.log(error);
       }
     };
 
-    fetchCartItems();
-  }, []);
+    if (userId) {
+      fetchCartItems();
+    }
+  }, [userId]);
 
-  const handleIncreaseQuantity = (itemId) => {
-    const updatedCartItems = cartItems.map((item) => {
-      if (item.id === itemId) {
-        return {
-          ...item,
-          quantity: item.quantity + 1,
-        };
-      }
-      return item;
-    });
-    setCartItems(updatedCartItems);
+  const handleRemoveFromCart = async (id) => {
+    try {
+      await removeFromCart(userId, id);
+      const updatedCartItems = cartItems.map((item) => {
+        if (item.docId === id) {
+          const updatedQuantity = item.quantity - 1;
+          return { ...item, quantity: updatedQuantity };
+        }
+        return item;
+      });
+      setCartItems(updatedCartItems);
+      setQuantity(quantity - 1);
+    } catch (error) {
+      console.log(error);
+    }
   };
-
-  const handleDecreaseQuantity = (itemId) => {
-    const updatedCartItems = cartItems.map((item) => {
-      if (item.id === itemId && item.quantity > 0) {
-        return {
-          ...item,
-          quantity: item.quantity - 1,
-        };
-      }
-      return item;
-    });
-    setCartItems(updatedCartItems);
+  
+  const handleAddToCart = async (id) => {
+    try {
+      await addToCart(userId, id);
+      const updatedCartItems = cartItems.map((item) => {
+        if (item.docId === id) {
+          const updatedQuantity = item.quantity + 1;
+          return { ...item, quantity: updatedQuantity };
+        }
+        return item;
+      });
+      setCartItems(updatedCartItems);
+      setQuantity(quantity + 1);
+    } catch (error) {
+      console.log(error);
+    }
   };
-
-  const handleRemoveItem = (itemId) => {
-    const updatedCartItems = cartItems.filter((item) => item.id !== itemId);
-    setCartItems(updatedCartItems);
-  };
-
-  const handleBuy = () => {
-    navigate("/payment");
-  };
+  
 
   return (
-    <div className="cart_container">
-      <h2>Cart</h2>
-      {cartItems.length > 0 ? (
-        <div>
-          {cartItems.map((item) => (
-            <div key={item.id} className="cart_item">
-              <div className="item_details">
-                <p>{item.name}</p>
-                <p>Price: ${item.price}</p>
-              </div>
-              <div className="item_quantity">
-                <button onClick={() => handleDecreaseQuantity(item.id)}>-</button>
-                <p>{item.quantity}</p>
-                <button onClick={() => handleIncreaseQuantity(item.id)}>+</button>
-              </div>
-              <button onClick={() => handleRemoveItem(item.id)}>Remove</button>
-            </div>
-          ))}
-          <button onClick={handleBuy}>Buy</button>
-        </div>
-      ) : (
+    <div className="cart-page-container">
+      <h1>Cart</h1>
+      {cartItems.length === 0 ? (
         <p>Your cart is empty.</p>
+      ) : (
+        <div className="cart-items-container">
+          {cartItems.map((item) => (
+            <CartCard
+              item={item}
+              increaseQuantity={() => handleAddToCart(item.docId)}
+              decreaseQuantity={() => handleRemoveFromCart(item.docId)}
+            />
+          ))}
+        </div>
       )}
+      <Link to={`/checkout`}>
+        <button>Proceed to Checkout</button>  
+      </Link>
     </div>
   );
 };
 
-export default CartPage;
+export default Cart;

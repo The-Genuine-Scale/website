@@ -11,6 +11,7 @@ export async function signUp(email, password) {
     );
     const user = userCredential.user;
     const usersCollection = collection(db, "Users");
+    localStorage.setItem("uid", user.uid)
     const userData = {
       userId: user.uid,
       name: "",

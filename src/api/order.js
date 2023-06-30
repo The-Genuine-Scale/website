@@ -1,18 +1,52 @@
+import {
+  query,
+  collection,
+  where,
+  getDocs,
+  updateDoc,
+  doc,
+} from "firebase/firestore";
 import { db } from "./firebase";
 
-export async function addToOrderHistory(userId, item) {
-  console.log("8");
-  const userRef = db.collection("Users").doc(userId);
-  await userRef.update({
-    orderHistory: [...item, ...userRef.orderHistory],
-  });
-}
-export async function removeFromOrderHistory(userId, orderId) {
-  console.log("9");
-  const userRef = db.collection("Users").doc(userId);
-  await userRef.update({
-    orderHistory: userRef.orderHistory.filter(
-      (item) => item.orderId !== orderId
-    ),
-  });
-}
+export const updateOrderHistory = async (uid, item) => {
+  try {
+    const usersCollection = collection(db, "Users");
+    const userQuery = query(usersCollection, where("userId", "==", uid));
+    const userSnapshot = await getDocs(userQuery);
+
+    if (!userSnapshot.empty) {
+      const userDoc = userSnapshot.docs[0];
+      const userRef = doc(db, "Users", userDoc.id);
+      const userData = userDoc.data();
+      let updatedCart = [...userData.cart];
+      updatedCart = updatedCart
+        .map((cartItem) => {
+          if (cartItem.productId === item.product.docId) {
+            if (cartItem.quantity > item.quantity) {
+              return {
+                ...cartItem,
+                quantity: cartItem.quantity - item.quantity,
+              };
+            } else {
+              return null;
+            }
+          } else {
+            return item;
+          }
+        })
+        .filter(Boolean);
+      let updatedOrderHistory = [...userData.orderHistory];
+      updatedOrderHistory.push(item);
+
+      await updateDoc(userRef, {
+        orderHistory: updatedOrderHistory,
+        cart: updatedCart,
+      });
+    } else {
+      console.log("User does not exist");
+    }
+  } catch (error) {
+    console.error("Error adding item to cart:", error);
+    throw error;
+  }
+};
