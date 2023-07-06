@@ -1,67 +1,97 @@
-.checkout-items h2 {
-  font-size: 18px;
-  margin-bottom: 10px;
-}
-
-.checkout-item a {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-}
 .checkout-item {
   display: flex;
   align-items: center;
-  margin-bottom: 10px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  border-top: 1px solid #ccc;
+  padding: 3em 0 3em 0;
 }
 
-.checkout-item a img {
-  width: 80px;
-  height: 80px;
-  margin-right: 10px;
-}
-
-.checkout-item a div {
+.image-section {
   flex: 1;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.checkout-item div {
-  flex: 1;
-}
-
-.checkout-item a h3 {
-  font-size: 16px;
-  margin-bottom: 5px;
-}
-
-.checkout-item a p {
-  font-size: 14px;
-  margin-bottom: 5px;
+.image-section img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
 }
 
 .quantity-controls {
   display: flex;
+  flex-direction: row;
   align-items: center;
-  justify-content: flex-end;
 }
 
-.quantity-controls button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 30px;
-  height: 30px;
-  background-color: #4caf50;
-  color: #fff;
-  border: none;
-  border-radius: 50%;
+.quantity-controls button{
   font-size: 16px;
-  margin: 0 5px;
+  margin: 10px 0 10px 0;
+  padding: 0 0.5em;
+  background: var(--orange-color);
+  font-family: "Poppins";
+  font-style: normal;
+  color: var(--white-color);
+  outline: none;
+  border: none;
   cursor: pointer;
+  transition: 0.3s all ease;
+}
+.rem{
+  border-radius: 10px 0 0 10px;
+}
+.add{
+  border-radius: 0 10px 10px 0;
+}
+.quantity-controls span{
+  font-size: 16px;
+  padding: 0 15px;
+  background: var(--orange-color);
+  font-family: "Poppins";
+  font-style: normal;
+  color: var(--white-color);
+  outline: none;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s all ease;
 }
 
-.quantity-controls button:hover {
-  background-color: #45a049;
+.info-section {
+  flex: 2;
+  padding: 2em;
+}
+
+.info-section span {
+  font-size: 16px;
+  margin-bottom: 5px;
+  font-weight: 800;
+}
+
+.info-section p {
+  font-size: 14px;
+  color: #777;
+}
+
+.delivery-section {
+  flex: 1;
+}
+.delivery-section span {
+  font-size: 16px;
+  font-weight: 800;
+  margin-top: 1em;
+}
+.delivery-section p:first-child {
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.remove-section {
+  flex: 1;
+  text-align: center;
+}
+
+.remove-section .trash-icon {
+  font-size: 20px;
+  cursor: pointer;
 }

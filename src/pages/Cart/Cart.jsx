@@ -67,26 +67,29 @@ const Cart = () => {
     }
   };
   
-
   return (
     <div className="cart-page-container">
-      <h1>Cart</h1>
-      {cartItems.length === 0 ? (
-        <p>Your cart is empty.</p>
-      ) : (
-        <div className="cart-items-container">
-          {cartItems.map((item) => (
-            <CartCard
-              item={item}
-              increaseQuantity={() => handleAddToCart(item.docId)}
-              decreaseQuantity={() => handleRemoveFromCart(item.docId)}
-            />
-          ))}
-        </div>
-      )}
-      <Link to={`/checkout`}>
-        <button>Proceed to Checkout</button>  
-      </Link>
+      <div className="cart-container">
+        <h1 className="cart-title">My Cart</h1>
+        {cartItems.length === 0 ? (
+          <p className="empty-cart-message">Your cart is empty.</p>
+        ) : (
+          <div className="cart-items-container">
+            {cartItems.map((item) => (
+              <CartCard
+                item={item}
+                increaseQuantity={() => handleAddToCart(item.docId)}
+                decreaseQuantity={() => handleRemoveFromCart(item.docId)}
+              />
+            ))}
+          </div>
+        )}
+      </div>
+      <div className="proceed-button">
+        <Link to={`/checkout`}>
+          <button>Proceed to Buy</button>
+        </Link>
+      </div>
     </div>
   );
 };
