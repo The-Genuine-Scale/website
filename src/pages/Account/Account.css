@@ -1,5 +1,6 @@
 .account-page {
-    margin: 20px;
+    margin: 20px auto 20px auto;
+    width: 80%;
   }
   
   .account-page h1 {
@@ -10,13 +11,24 @@
   .account-page .label {
     display: block;
     margin-bottom: 10px;
+    font-family: Poppins;
+    font-size: 20px;
+    font-weight: 400;
   }
   
   .account-page input[type="text"],
   .account-page input[type="email"] {
     width: 100%;
     padding: 8px;
-    margin-bottom: 10px;
+    margin: 10px 0 10px 0;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #000;
+    outline: none;
+    padding: 5px;
+    font-family: Poppins;
+    font-size: 20px;
+    font-weight: 400;
   }
   
   .account-page pre {
@@ -27,17 +39,22 @@
   }
   
   .account-page button {
-    padding: 10px 20px;
-    background-color: #4caf50;
-    color: #fff;
-    border: none;
-    cursor: pointer;
     font-size: 16px;
     margin: 10px;
+    padding: 5px 20px;
+    background: var(--orange-color);
+    border-radius: 5px;
+    font-family: "Poppins";
+    font-style: normal;
+    color: var(--white-color);
+    outline: none;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s all ease;
   }
   
   .account-page button:hover {
-    background-color: #45a049;
+    background-color: var(--orange-dark);
   }
   
   .account-page button:disabled {
