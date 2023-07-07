@@ -1,47 +1,83 @@
 .signup-page {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
-  
-  .signup-form {
-    width: 300px;
-    padding: 20px;
-    background-color: #f0f0f0;
-    border-radius: 5px;
-  }
-  
-  .signup-form h2 {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .signup-label {
-    display: block;
-    margin-bottom: 5px;
-  }
-  
-  .signup-input {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-  }
-  
-  .signup-button {
-    width: 100%;
-    padding: 8px;
-    background-color: #2196f3;
-    color: #fff;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-  }
-  
-  .signup-error {
-    color: red;
-    margin-top: 10px;
-  }
-  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5em;
+}
+
+.signup-form {
+  width: 400px;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 15px;
+}
+
+.signup-form h1 {
+  color: #000;
+font-family: Poppins;
+font-size: 12.927px;
+font-weight: 700;
+}
+
+.signup-form form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.signup-form input[type="email"],
+.signup-form input[type="password"] {
+  width: 100%;
+  padding: 8px;
+  margin: 10px 0 10px 0;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid #000;
+  outline: none;
+  padding: 5px;
+  font-family: Poppins;
+  font-weight: 400;
+}
+
+.signup-form input[type="email"]::placeholder,
+.signup-form input[type="password"]::placeholder {
+  color: #888888;
+}
+
+.signup-form button[type="submit"] {
+  font-size: 16px;
+  font-weight: 600;
+  width: 13em;
+  margin: 10px;
+  padding: .5em 1em;
+  background: var(--orange-color);
+  border-radius: 5px;
+  font-family: "Poppins";
+  font-style: normal;
+  color: var(--white-color);
+  outline: none;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s all ease;
+}
+
+.signup-form .error-message {
+  color: red;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.login-link {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.login-link p {
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.login-link a {
+  color: #000000;
+  text-decoration: none;
+}
