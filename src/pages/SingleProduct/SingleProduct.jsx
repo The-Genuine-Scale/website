@@ -1,16 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { TbMoodSmileDizzy } from "react-icons/tb";
 import "./SingleProduct.css";
+import Modal from "react-modal";
+import { FaTimes } from "react-icons/fa";
 import { AiOutlineHeart } from "react-icons/ai";
 import { BiHomeHeart } from "react-icons/bi";
 import { FaUserShield } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 import ProductsList from "../../components/ProductsList/ProductsList";
-import { getProducts, getProductById } from "../../api/product";
+import { Timestamp } from "firebase/firestore";
+import {
+  getProducts,
+  getProductById,
+  updateProductDetails,
+} from "../../api/product";
 import { addToCart, removeFromCart, getItemCount } from "../../api/cart";
 import { useNavigate } from "react-router-dom";
 import PageNavigator from "../../components/PageNavigator/PageNavigator";
 import ProductReview from "../../components/ProductReview/ProductReview";
+import ReviewForm from "../../components/ReviewForm/ReviewForm";
 
 const SingleProduct = () => {
   const navigate = useNavigate();
@@ -18,7 +26,11 @@ const SingleProduct = () => {
   const [products, setProducts] = useState([]);
   const [product, setProduct] = useState();
   const [quantity, setQuantity] = useState(0);
+  const [reviews, setReviews] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const userId = localStorage.getItem("uid");
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+
   useEffect(() => {
     async function fetchProducts() {
       try {
@@ -36,7 +48,8 @@ const SingleProduct = () => {
       try {
         const product = await getProductById(id);
         setProduct(product);
-        console.log(product);
+        setReviews(product.reviews);
+        console.log(product.reviews);
       } catch (error) {
         console.log(error);
       }
@@ -58,8 +71,8 @@ const SingleProduct = () => {
     // eslint-disable-next-line
   }, [userId]);
   const handleRemoveFromCart = async () => {
-    if(!userId){
-      navigate('/login')
+    if (!userId) {
+      navigate("/login");
     }
     try {
       await removeFromCart(userId, id);
@@ -69,10 +82,10 @@ const SingleProduct = () => {
     }
   };
   const handleAddToCart = async () => {
-    console.log(userId)
-    if(!userId){
-      console.log('hehe')
-      navigate('/login')
+    console.log(userId);
+    if (!userId) {
+      console.log("hehe");
+      navigate("/login");
     }
     try {
       const result = await addToCart(userId, id);
@@ -83,8 +96,8 @@ const SingleProduct = () => {
     }
   };
   const handleBuyNow = async () => {
-    if(!userId){
-      navigate('/login')
+    if (!userId) {
+      navigate("/login");
     }
     if (quantity < 1) {
       setQuantity(1);
@@ -96,6 +109,37 @@ const SingleProduct = () => {
     }
     navigate("/checkout");
   };
+  const handleAddReview = async (newReview) => {
+    if (!userId) {
+      navigate("/login");
+      return;
+    }
+    const reviewWithTimestamp = { ...newReview, created_at: Timestamp.now() };
+    const updatedReviews = [...reviews, reviewWithTimestamp];
+    setProduct((prevProduct) => ({
+      ...prevProduct,
+      reviews: updatedReviews,
+    }));
+    try {
+      const updatedProduct = {
+        ...product,
+        reviews: updatedReviews,
+      };
+      console.log(updatedProduct);
+      await updateProductDetails(updatedProduct);
+      console.log("Product details updated successfully!");
+      window.location.reload();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
   return (
     <div className="main_container_productbanner1">
       <PageNavigator page1="product" page2={id} />
@@ -104,19 +148,25 @@ const SingleProduct = () => {
           <div className="product_container_productbanner1">
             <div className="product_image_section_productbanner1">
               <div className="product_first_section_productbanner1">
-                <img src={product.imgUrl[0]} alt="item" />
-                <img src={product.imgUrl[0]} alt="item" />
-                <img src={product.imgUrl[0]} alt="item" />
-                <img src={product.imgUrl[0]} alt="item" />
+                {product.imgUrl.map((imageUrl, index) => (
+                  <img
+                    key={index}
+                    src={imageUrl}
+                    alt={`item-${index}`}
+                    onClick={() => setSelectedImageIndex(index)}
+                  />
+                ))}
               </div>
 
               <div className="product_second_section_productbanner1">
                 {product.imgUrl && (
-                  <img src={product.imgUrl[0]} alt="mainitem" />
+                  <img
+                    src={product.imgUrl[selectedImageIndex]}
+                    alt="mainitem"
+                  />
                 )}
               </div>
             </div>
-
             <div className="product_third_section_productbanner1">
               <div className="product_third_top_section_productbanner1">
                 <div className="product_third_section_top_upper_productbanner1">
@@ -130,7 +180,7 @@ const SingleProduct = () => {
 
                 <div className="product_third_section_top_lower_productbanner1">
                   <div className="rating_box_productbanner1">
-                    <h6>{product.rating}</h6>
+                    <h6>{product.rating.toFixed(1)}</h6>
                   </div>
                   <p>{product.reviews_no}</p>
                 </div>
@@ -238,45 +288,26 @@ const SingleProduct = () => {
         </div>
 
         <div className="reviews_bottom_section_productbanner1">
-          <ProductReview
-            review={{
-              name: "Nithya Menon",
-              description:
-                "FNP (Ferns N Petals) is India’s top gifting brand that helps you celebrate special moments by delivering fabulous gifts to your loved ones. You can find thoughtful gifts for all special",
-              rating: 4.5,
-              created_at: "9/4/2023 , 9:10 pm",
-            }}
-          />
-          <ProductReview
-            review={{
-              name: "Nithya Menon",
-              description:
-                "FNP (Ferns N Petals) is India’s top gifting brand that helps you celebrate special moments by delivering fabulous gifts to your loved ones. You can find thoughtful gifts for all special",
-              rating: 4.5,
-              created_at: "9/4/2023 , 9:10 pm",
-            }}
-          />
-          <ProductReview
-            review={{
-              name: "Nithya Menon",
-              description:
-                "FNP (Ferns N Petals) is India’s top gifting brand that helps you celebrate special moments by delivering fabulous gifts to your loved ones. You can find thoughtful gifts for all special",
-              rating: 4.5,
-              created_at: "9/4/2023 , 9:10 pm",
-            }}
-          />
-          <ProductReview
-            review={{
-              name: "Nithya Menon",
-              description:
-                "FNP (Ferns N Petals) is India’s top gifting brand that helps you celebrate special moments by delivering fabulous gifts to your loved ones. You can find thoughtful gifts for all special",
-              rating: 4.5,
-              created_at: "9/4/2023 , 9:10 pm",
-            }}
-          />
+          {reviews.map((review) => (
+            <ProductReview key={review.id} review={review} />
+          ))}
         </div>
+        <button onClick={openModal} className="add-review-button">
+          Add Review
+        </button>
       </div>
       <ProductsList products={products} />
+      <Modal
+        className={"modal"}
+        isOpen={isModalOpen}
+        onRequestClose={closeModal}
+        contentLabel="Add Review Modal"
+      >
+        <span className="close-button" onClick={closeModal}>
+          <FaTimes />
+        </span>
+        <ReviewForm onAddReview={handleAddReview} />
+      </Modal>
     </div>
   );
 };

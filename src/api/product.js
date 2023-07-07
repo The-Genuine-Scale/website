@@ -1,4 +1,4 @@
-import { collection, getDocs, where, query, addDoc } from "firebase/firestore";
+import { collection, getDocs, where, query, addDoc, doc, updateDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "./firebase";
 
 export async function saveProduct(productData) {
@@ -10,6 +10,36 @@ export async function saveProduct(productData) {
     console.log("Error saving product:", error);
   }
 }
+export const updateProductDetails = async (productDetails) => {
+  try {
+    console.log(productDetails)
+    const productsCollection = collection(db, "Products");
+    const productQuery = query(productsCollection, where("docId", "==", productDetails.docId));
+    const productSnapshot = await getDocs(productQuery);
+
+    if (!productSnapshot.empty) {
+      console.log(productSnapshot.docs)
+      const productDoc = productSnapshot.docs[0];
+      const productRef = doc(db, "Products", productDoc.id);
+      const reviews = productDetails.reviews;
+      console.log(reviews)
+      const totalRating = reviews.reduce((sum, review) => sum + review.rating, 0);
+      const averageRating = totalRating / reviews.length;
+      console.log( totalRating, averageRating)
+      const updatedProductDetails = {
+        ...productDetails,
+        rating: averageRating,
+      };
+      await updateDoc(productRef, updatedProductDetails);
+      console.log("Product details updated successfully");
+    } else {
+      console.log("Product does not exist");
+    }
+  } catch (error) {
+    console.error("Error updating Product details:", error);
+    throw error;
+  }
+};
 
 export async function getProductById(docId) {
   console.log("10");

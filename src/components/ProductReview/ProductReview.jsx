@@ -2,6 +2,10 @@ import React from "react";
 import "./ProductReview.css";
 
 const ProductReview = ({ review }) => {
+  const formatTimestamp = (timestamp) => {
+    const date = timestamp.toDate();
+    return date.toLocaleString();
+  };
   return (
     <div className="review_box_productbanner1">
       <div className="review_left_section_productbanner1">
@@ -18,7 +22,7 @@ const ProductReview = ({ review }) => {
           <div className="rating_box_productbanner1">
             <h6>{review.rating}</h6>
           </div>
-          <h3>{review.created_at}</h3>
+          <h3>{formatTimestamp(review.created_at)}</h3>
         </div>
       </div>
     </div>
