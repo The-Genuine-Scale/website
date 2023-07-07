@@ -5,6 +5,7 @@ import { updateOrderHistory } from "../../api/order";
 import { addAddressToUser, getAddressesByUser } from "../../api/user";
 import { getUserDetails } from "../../api/user";
 import "./Checkout.css";
+import { FaTrash } from "react-icons/fa";
 import CartCard from "../../components/CartCard/CartCard";
 
 const Checkout = () => {
@@ -20,8 +21,12 @@ const Checkout = () => {
     const fetchUserDetails = async () => {
       try {
         const userDetails = await getUserDetails(userId);
-        setPersonalDetails({name: userDetails.name, mobileNumber: userDetails.mobileNumber, email: userDetails.email});
-        console.log(personalDetails)
+        setPersonalDetails({
+          name: userDetails.name,
+          mobileNumber: userDetails.mobileNumber,
+          email: userDetails.email,
+        });
+        console.log(personalDetails);
       } catch (error) {
         console.log(error);
       }
@@ -38,7 +43,7 @@ const Checkout = () => {
           })
         );
         setCartItems(cartItemsWithDetails);
-        console.log(cartItemsWithDetails)
+        console.log(cartItemsWithDetails);
       } catch (error) {
         console.log(error);
       }
@@ -47,14 +52,14 @@ const Checkout = () => {
       try {
         const addresses = await getAddressesByUser(userId);
         setAddressOptions(addresses);
-        console.log(addressOptions)
+        console.log(addressOptions);
       } catch (error) {
         console.log(error);
       }
     };
 
-      fetchCartItems();
-      fetchAddresses();
+    fetchCartItems();
+    fetchAddresses();
   }, [userId]);
 
   const handleQuantityIncrease = (index) => {
@@ -108,88 +113,101 @@ const Checkout = () => {
 
   return (
     <div className="checkout-page-container">
-      <h1>Checkout</h1>
-      <div className="checkout-forms">
-        <div className="checkout-form">
-          <h2>Personal Details</h2>
-          <input
-            type="text"
-            placeholder="Full Name"
-            value={personalDetails.name || ""}
-            onChange={(e) =>
-              setPersonalDetails({
-                ...personalDetails,
-                name: e.target.value,
-              })
-            }
-          />
-          <input
-            type="email"
-            placeholder="Email"
-            value={personalDetails.email || ""}
-            onChange={(e) =>
-              setPersonalDetails({
-                ...personalDetails,
-                email: e.target.value,
-              })
-            }
-          />
-          <input
-            type="text"
-            placeholder="Mobile Number"
-            value={personalDetails.mobileNumber || ""}
-            onChange={(e) =>
-              setPersonalDetails({
-                ...personalDetails,
-                mobileNumber: e.target.value,
-              })
-            }
-          />
-        </div>
-        <div className="checkout-form">
-          <h2>Address</h2>
-          <select
-            value={selectedAddress}
-            onChange={(e) => setSelectedAddress(e.target.value)}
-          >
-            <option value="">Select Address</option>
-            {addressOptions?.map((address) => (
-              <option key={address} value={address}>
-                {address}
-              </option>
-            ))}
-          </select>
-          <input
-            type="text"
-            placeholder="Add New Address"
-            value={newAddress}
-            onChange={(e) => setNewAddress(e.target.value)}
-          />
-          <button onClick={handleAddAddress}>Add Address</button>
-        </div>
-        <div className="checkout-items">
-          <h2>Items</h2>
-          {cartItems.map((item, index) => (
-            <CartCard
-              item={item}
-              increaseQuantity={() => handleQuantityIncrease(index)}
-              decreaseQuantity={() => handleQuantityDecrease(index)}
-            />
-          ))}
-        </div>
-        <div className="checkout-form">
-          <h2>Payment Method</h2>
-          <label>
+      <div className="checkout-container">
+        <div className="checkout-section">
+          <div className="checkout-section-label">1</div>
+          <div className="checkout-form">
+            <h2>Personal Details</h2>
             <input
-              type="radio"
-              value="cash_on_deliver"
-              checked={paymentMethod === "cash_on_deliver"}
-              onChange={(e) => setPaymentMethod(e.target.value)}
+              type="text"
+              placeholder="Full Name"
+              value={personalDetails.name || ""}
+              onChange={(e) =>
+                setPersonalDetails({
+                  ...personalDetails,
+                  name: e.target.value,
+                })
+              }
             />
-            Cash on Delivery
-          </label>
+            <input
+              type="email"
+              placeholder="Email"
+              value={personalDetails.email || ""}
+              onChange={(e) =>
+                setPersonalDetails({
+                  ...personalDetails,
+                  email: e.target.value,
+                })
+              }
+            />
+            <input
+              type="text"
+              placeholder="Mobile Number"
+              value={personalDetails.mobileNumber || ""}
+              onChange={(e) =>
+                setPersonalDetails({
+                  ...personalDetails,
+                  mobileNumber: e.target.value,
+                })
+              }
+            />
+          <div className="address-list">
+            <h3>Select Address</h3>
+            {addressOptions.map((address) => (
+              <label key={address}>
+                <input
+                  type="radio"
+                  value={address}
+                  checked={selectedAddress === address}
+                  onChange={(e) => setSelectedAddress(e.target.value)}
+                />
+                <span>{address}</span>
+                <FaTrash className="trash-icon" />
+              </label>
+            ))}
+          </div>
+            <input
+              type="text"
+              placeholder="Add New Address"
+              value={newAddress}
+              onChange={(e) => setNewAddress(e.target.value)}
+            />
+            <button onClick={handleAddAddress}>Add Address</button>
+          </div>
         </div>
-        <button onClick={handleCheckout}>Pay</button>
+        <div className="checkout-section">
+          <div className="checkout-section-label">2</div>
+          <div className="checkout-items">
+            <h2>Items</h2>
+            {cartItems.map((item, index) => (
+              <CartCard
+                item={item}
+                increaseQuantity={() => handleQuantityIncrease(index)}
+                decreaseQuantity={() => handleQuantityDecrease(index)}
+              />
+            ))}
+          </div>
+        </div>
+        <div className="checkout-section payment">
+        <div className="payment-top">
+          <div className="checkout-section-label">3</div>
+          <div className="checkout-form">
+          <div className="payment-list">
+            <h2>Payment Method</h2>
+            <label>
+              <input
+                type="radio"
+                value="cash_on_deliver"
+                checked={paymentMethod === "cash_on_deliver"}
+                onChange={(e) => setPaymentMethod(e.target.value)}
+              />
+              Cash on Delivery
+            </label>
+            </div>
+          </div>
+          </div>
+          <button onClick={handleCheckout}>Pay</button>
+        </div>
       </div>
     </div>
   );

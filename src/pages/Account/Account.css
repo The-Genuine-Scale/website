@@ -11,10 +11,13 @@
   .account-page .label {
     display: block;
     margin-bottom: 10px;
-    font-family: Poppins;
     font-weight: 400;
+    align-items: center;
   }
-  
+  .address {
+    display: flex;
+    align-items: center;
+  }
   .account-page input[type="text"],
   .account-page input[type="email"] {
     width: 100%;
@@ -79,5 +82,9 @@
   
   .account-page .address-item button {
     margin-left: 10px;
+  }
+  .trash-icon {
+    margin: 2em;
+    cursor: pointer;
   }
   

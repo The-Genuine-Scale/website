@@ -39,7 +39,7 @@ const CartCard = ({ item, increaseQuantity, decreaseQuantity }) => {
       <div className="delivery-section">
         <p>Delivering on</p>
         <p>{deliveryDate}</p>
-        <span>&#x20B9; {item.quantity*item.price} ({item.quantity}*{item.price}) </span>
+        <span>&#x20B9; {item.quantity*item.price} </span> ({item.quantity}*{item.price})
       </div>
       <div className="remove-section">
         <FaTrash className="trash-icon" />

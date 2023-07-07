@@ -3,6 +3,7 @@ import { getUserDetails, updateUserDetails } from "../../api/user";
 import { useNavigate } from "react-router-dom";
 import "./Account.css";
 import Stats from "../../components/Stats/Stats";
+import { FaTrash } from "react-icons/fa";
 
 const Account = () => {
   const [userDetails, setUserDetails] = useState({});
@@ -77,11 +78,9 @@ const Account = () => {
             <div >
               {userDetails.address &&
                 userDetails.address.map((address) => (
-                  <div key={address}>
+                  <div className="address" key={address}>
                     {address}
-                    <button onClick={() => handleDeleteAddress(address)}>
-                      Delete
-                    </button>
+                    <FaTrash className="trash-icon" onClick={() => handleDeleteAddress(address)}></FaTrash>
                   </div>
                 ))}
               <input
