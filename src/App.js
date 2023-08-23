@@ -14,6 +14,7 @@ import Account from "./pages/Account/Account.jsx";
 import { Routes, Route } from "react-router-dom";
 import OrderHistory from "./pages/orderHistory/OrderHistory.jsx";
 import CreateProduct from "./pages/CreateProduct/CreateProduct.jsx";
+import LoginVerify from "./pages/Login/LoginVerify.jsx";
 
 const App = () => {
   const isLoggedIn = localStorage.getItem("uid");
@@ -30,6 +31,7 @@ const App = () => {
         <Route path="/about" element={<About />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/login/verify" element={<LoginVerify />} />
         {isLoggedIn!==null ? (
           <>
             <Route path="/account" element={<Account />} />

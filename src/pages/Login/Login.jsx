@@ -1,34 +1,26 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth';
-import './Login.css';
+import React, { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import { getAuth, sendSignInLinkToEmail } from "firebase/auth";
+import Image from "../../assets/login.png";
+import LoginLogo from "../../assets/login-logo.png";
+import "./Login.css";
 
 const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [email, setEmail] = useState("");
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const auth = getAuth();
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        navigate('/');
-      }
-    });
-  }, [navigate]);
-
-  const handleLogin = async (e) => {
+  const handleSendLoginLink = async (e) => {
     e.preventDefault();
 
     try {
       const auth = getAuth();
-      await signInWithEmailAndPassword(auth, email, password);
-      localStorage.setItem("uid", auth.currentUser.uid)
-      setEmail('');
-      setPassword('');
-      setError('');
-      navigate('/');
+      await sendSignInLinkToEmail(auth, email, {
+        url: "https://scaleindia.netlify.app/login/verify",
+        handleCodeInApp: true,
+      });
+      localStorage.setItem('emailForSignIn', email)
+      setError("Login link has been sent to your email.");
     } catch (error) {
       setError(error.message);
     }
@@ -37,11 +29,18 @@ const Login = () => {
   return (
     <div className="login-page">
       <div className="login-form">
-        <h1>Login Page</h1>
-        <form onSubmit={handleLogin}>
-          <input type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder='Email ID'/>
-          <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder='Password'/>
-          <button type="submit">Login</button>
+        <img src={LoginLogo} alt="login-logo" className="login-logo" />
+        <form onSubmit={handleSendLoginLink}>
+          <div className="label">
+            Email
+            <input
+              type="email"
+              id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+          <button type="submit">Send Login Link</button>
         </form>
 
         {error && <p className="error-message">{error}</p>}
@@ -51,6 +50,7 @@ const Login = () => {
           <Link to="/signup">Sign up</Link>
         </div>
       </div>
+      <img src={Image} alt="Image" className="login-image" />
     </div>
   );
 };

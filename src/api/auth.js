@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithPhoneNumber } from "firebase/auth";
 import { collection, addDoc } from 'firebase/firestore';
 import { auth, db } from "./firebase";
 

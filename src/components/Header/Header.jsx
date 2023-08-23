@@ -86,12 +86,11 @@ const Header = () => {
 
           <div className="desk_bottom_section_header">
             <div className="desk_bottom_left_section_header">
-              <Link to="/products/birthday"><p> Birthday</p></Link>
-              <Link to="/products/anniversary"><p> Anniversary</p></Link>
-              <Link to="/products/cake"><p> Cakes</p></Link>
-              <Link to="/products/flower"><p> Flowers</p></Link>
+              <Link to="/products/stationary"><p> Stationary</p></Link>
+              <Link to="/products/decor"><p> Decor</p></Link>
               <Link to="/products/customise"><p> Customised</p></Link>
-              <Link to="/products/gift"><p> Gifts</p></Link>
+              <Link to="/products/neon"><p> Neon</p></Link>
+              <Link to="/products/books"><p> Books</p></Link>
             </div>
 
             {isLoggedIn ? (
@@ -223,26 +222,23 @@ const Header = () => {
             </div>
 
             <div className="side_bottom_section_header">
-              <Link to="/products/birthday" className="side_bottom_box_header">
-                <p>Birthday</p>
+              <Link to="/products/stationary" className="side_bottom_box_header">
+                <p>Stationary</p>
               </Link>
               <Link
-                to="/products/anniversary"
+                to="/products/decor"
                 className="side_bottom_box_header"
               >
-                <p>Anniversary</p>
-              </Link>
-              <Link to="/products/cake" className="side_bottom_box_header">
-                <p>Cakes</p>
-              </Link>
-              <Link to="/products/flower" className="side_bottom_box_header">
-                <p>Flowers</p>
+                <p>Decor</p>
               </Link>
               <Link to="/products/customise" className="side_bottom_box_header">
-                <p>Customise</p>
+                <p>Customised</p>
               </Link>
-              <Link to="/products/gift" className="side_bottom_box_header">
-                <p>Gifts</p>
+              <Link to="/products/neon" className="side_bottom_box_header">
+                <p>Neon</p>
+              </Link>
+              <Link to="/products/books" className="side_bottom_box_header">
+                <p>Books</p>
               </Link>
             </div>
           </div>

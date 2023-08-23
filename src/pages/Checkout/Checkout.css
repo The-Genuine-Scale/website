@@ -23,7 +23,7 @@
   padding: 5px 10px;
   color: #fff;
   font-weight: bold;
-  background: #7d7f3c;
+  background: var(--header-bg);
   border-radius: 0 5px 5px 0;
 }
 

@@ -30,7 +30,6 @@ const SingleProduct = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const userId = localStorage.getItem("uid");
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
-
   useEffect(() => {
     async function fetchProducts() {
       try {
@@ -68,7 +67,6 @@ const SingleProduct = () => {
     }
 
     fetchItemCount();
-    // eslint-disable-next-line
   }, [userId]);
   const handleRemoveFromCart = async () => {
     if (!userId) {
@@ -134,6 +132,7 @@ const SingleProduct = () => {
     }
   };
   const openModal = () => {
+    console.log(userId);
     setIsModalOpen(true);
   };
 
@@ -292,9 +291,9 @@ const SingleProduct = () => {
             <ProductReview key={review.id} review={review} />
           ))}
         </div>
-        <button onClick={openModal} className="add-review-button">
+        {userId!=null && (<button onClick={openModal} className="add-review-button">
           Add Review
-        </button>
+        </button>)}
       </div>
       <ProductsList products={products} />
       <Modal

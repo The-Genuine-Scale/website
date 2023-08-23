@@ -104,8 +104,8 @@ color: rgba(0, 0, 0, 0.5);
   width: 100%;
   background: linear-gradient(
     80.76deg,
-    #e3e9e3 46.49%,
-    rgba(227, 233, 227, 0) 99.49%
+    rgb(221, 211, 243) 36.49%,
+    rgba(255,255,255,1) 99.49%
   );
 }
 

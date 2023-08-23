@@ -13,7 +13,8 @@ body {
 :root{
   --white-color: #fff;
   --black-color: #000;
-  --header-bg: #7D7F3C;
+  --header-bg: rgb(88, 55, 165);
+  --theme-color: rgb(195,169,255);
   --background-secondary: #E3E9E3;
   --yellow-color: #d0af22;
   --yellow-light: #DDBC2C;

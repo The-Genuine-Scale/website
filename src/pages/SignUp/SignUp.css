@@ -1,22 +1,24 @@
 .signup-page {
   display: flex;
-  justify-content: center;
+  align-items: flex-start;
+}
+.signup-logo{
+  height: 5em;
+  width: 15em;
+  margin: 0 5em 5em 5em;
+}
+.signup-form .label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: 400;
   align-items: center;
-  margin: 5em;
+  width: 25em;
 }
-
-.signup-form {
-  width: 400px;
-  padding: 20px;
-  background-color: #ffffff;
-  border-radius: 15px;
-}
-
 .signup-form h1 {
   color: #000;
-font-family: Poppins;
-font-size: 12.927px;
-font-weight: 700;
+  font-family: Poppins;
+  font-size: 20px;
+  font-weight: 700;
 }
 
 .signup-form form {
@@ -37,6 +39,7 @@ font-weight: 700;
   padding: 5px;
   font-family: Poppins;
   font-weight: 400;
+  font-size: 20px;
 }
 
 .signup-form input[type="email"]::placeholder,
@@ -45,7 +48,7 @@ font-weight: 700;
 }
 
 .signup-form button[type="submit"] {
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 600;
   width: 13em;
   margin: 10px;
@@ -67,6 +70,20 @@ font-weight: 700;
   margin-top: 10px;
 }
 
+.signup-form {
+  width: 50%;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.signup-image{
+  width: 50%;
+  margin-right: 0;
+}
+.end {
+  margin-top: 20em;
+}
 .login-link {
   margin-top: 20px;
   text-align: center;
@@ -80,4 +97,36 @@ font-weight: 700;
 .login-link a {
   color: #000000;
   text-decoration: none;
+}
+@media screen and (max-width: 768px) {
+  .signup-page {
+    justify-content: center;
+  }
+
+  .signup-logo {
+    margin: 0 auto 2em auto;
+  }
+
+  .signup-form {
+    width: 80%; 
+  }
+
+  .signup-form .label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 400;
+    align-items: center;
+    width: 100%;
+  }
+  .signup-image {
+    display: none;
+  }
+  .end {
+    display: none;
+  }
+  .signup-form input[type="email"],
+  .signup-form input[type="password"] {
+    max-width: 300px;
+    margin: 0 auto;
+  }
 }
